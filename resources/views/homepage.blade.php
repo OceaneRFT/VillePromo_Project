@@ -9,21 +9,21 @@
             </div>
         </div>
     </section>
-
+{{-- {{ dump($produits) }} --}}
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                {{-- @foreach ($produits as $produit) --}}
+                @foreach ($produits as $produit)
                     <div class="col">
                         <div class="card shadow-sm">
                             <img class="bd-placeholder-img card-img-top" width="100%" height="225"
-                                {{-- src="{{ $produit->picture }}" role="img" aria-label="Placeholder: Thumbnail" --}}
+                                src="{{ $produit->picture }}" role="img" aria-label="Placeholder: Thumbnail"
                                 preserveAspectRatio="xMidYMid slice" focusable="false">
                             <div class="card-body">
-                                {{-- <h2>{{ $produit->name }}</h2> --}}
-                                {{-- <p class="card-text">{{ $produit->description }}</p> --}}
+                                <h2>{{ $produit->name }}</h2>
+                                <p class="card-text">{{ $produit->description }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    {{-- <span class="price">{{ number_format($produit->price, 2) }}€</span> --}}
+                                    <span class="price">{{ number_format($produit->price, 2) }}€</span>
                                     <a href="#" class="btn btn-sm btn-outline-secondary">Plus d'informations <svg
                                             class="svg-inline--fa fa-eye fa-w-18" aria-hidden="true" data-prefix="fas"
                                             data-icon="eye" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </div>
-                {{-- @endforeach --}}
+                @endforeach
             </div>
         </div>
     </div>
