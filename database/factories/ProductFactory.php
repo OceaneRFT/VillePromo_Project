@@ -23,6 +23,7 @@ class ProductFactory extends Factory
     public function definition()
     {
         $name = $this->faker->word();
+        $category_id = $this->faker->randomDigitNot(0);
         $description = $this->faker->realText($maxNbChars = 400, $indexSize = 2);
         $price = $this->faker->randomDigitNot(0);
         $SKU = $this->faker->randomDigit; 
@@ -30,6 +31,7 @@ class ProductFactory extends Factory
 
         return [
             'name' => $name,
+            'category_id' => $category_id,
             'description' => $description,
             'price' => $price,
             'SKU' => $SKU,

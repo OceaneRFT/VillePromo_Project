@@ -24,18 +24,15 @@ class CategoryFactory extends Factory
 
     public function definition()
     {
-
         $name = $this->faker->word();
-        $product_id = $this->faker->randomDigitNot(0);
         $description = $this->faker->realText($maxNbChars = 200, $indexSize = 2);
         $picture = $this->faker->imageUrl($width = 640, $height = 480); 
 
         return [
             'name' => $name,
-            'product_id' => $product_id,
             'description' => $description,
             'picture' => $picture,
         ];
-     
+
     }
 }
