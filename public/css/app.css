@@ -1,0 +1,30 @@
+.modal-angular {
+    position: fixed;
+    z-index: 9;
+    background-color: white;
+    width: 74%;
+    justify-content: center;
+    top: 68px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    padding: 26px 25px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 8px 3px #ddd;
+}
+.actions {
+    float: right;
+} 
+
+
+/* ---------------ADMIN DASHBOARD--------------------- */
+main.container.dashbordAdmin, .row.dashbordAdmin {
+    display: flex;
+}
+
+
+
+  
+
+  
+ 

@@ -1,0 +1,102 @@
+/* ---------------------------------------// body //--------------------------------------- */
+/* ------------------------------------HOMEPAGE START------------------------------------ */
+.container {
+    margin: auto;
+    padding: 30px;
+}
+
+/* style pour produits  */
+.ui.segment.product_item {
+    min-height: 25vh !important;
+    background-color: rgba(158, 154, 154, 0.151);
+}
+
+.ui.segment.product_item1 {
+    min-height: 51vh !important;
+    background-color: rgba(158, 154, 154, 0.151);
+}
+
+/* style affichage dynamique */
+.ui.segment.view_item {
+    min-height: 60vh !important;
+    background-color: rgba(158, 154, 154, 0.151);
+}
+
+/* style affichage categories en vogue */
+.ui.segment.category_item {
+    min-height: 35vh !important;
+    background-color: rgba(158, 154, 154, 0.151);
+}
+
+/* style affichage dynamique offre à ne pas louper */
+.ui.segment.deal_item {
+    min-height: 35vh !important;
+    background-color: rgba(158, 154, 154, 0.151);
+}
+/* ------------------------------------HOMEPAGE STOP------------------------------------ */
+
+c
+
+/* style affichage pour les catégories */
+.ui.unstackable.items {
+    display: flex;
+    min-height: 15vh;
+}
+h1.title_category {
+    text-align: center;
+}
+.image {
+    background-color: rgba(34, 36, 38, 0.1);
+}
+.row.item_category {
+    display: flex;
+    justify-content: center;
+}
+
+/* style affichage featured catégories */
+.ui.segment.featuredcategory_item {
+    min-height: 25vh !important;
+    background-color: rgba(158, 154, 154, 0.151);
+}
+/* style affichage produits*/
+.search-product {
+    display: flex;
+    justify-content: flex-end;
+}
+.product_container {
+    display: flex;
+}
+section.container.product_container {
+    display: flex;
+    justify-content: center;
+}
+.search-product {
+    padding-bottom: 2vh;
+} 
+.ui.vertical.menu category {
+    width: 24rem;
+    min-height: 73vh;
+}
+.ui.segment.product_view {
+    min-height: 15vh;
+} 
+.container.category_shoppage {
+    display: flex;
+    justify-content: center;
+}
+
+/* ------------------------------------SHOPPAGE STOP------------------------------------ */
+
+/* ------------------------------------PRODUCTPAGE START------------------------------------ */
+.ui.segment.picture_product {
+    min-height: 21vh;
+}
+.ui.segment.picture_product2 {
+    min-height: 63vh;
+}
+/* ------------------------------------PRODUCTPAGE STOP------------------------------------ */
+
+/* ---------------------------------------// footer //--------------------------------------- */
+.ui.fluid.action.input {
+    max-width: 55vh;
+}
