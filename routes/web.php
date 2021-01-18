@@ -20,7 +20,7 @@ Auth::routes();
 
 
 //--Home
-Route::get('/', function () {return view('homepage');}); 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']); 
 
 
 //--Admin   
@@ -40,6 +40,9 @@ Route::get('/admin/boutiques', function () {
 
 
 //--Liens pages 
+// Route::get('/', function () {
+//     return view('homepage');
+// });
 Route::get('/shop', function () {
     return view('shop');
 });

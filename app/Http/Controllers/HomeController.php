@@ -28,8 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $produits = DB::table('products')->get();
-        // var_dump($produits);
-        // return view('homepage', compact('produits'));
+        
+        return view('homepage');
     }
 }
