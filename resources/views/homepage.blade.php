@@ -24,7 +24,7 @@
                                 <p class="card-text">{{ $produit->description }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="price">{{ number_format($produit->price, 2) }}€</span>
-                                    <a href="#" class="btn btn-sm btn-outline-secondary">Plus d'informations <svg
+                                    <a href="{{ route('voir_produit',['id'=>$produit->id]) }}" class="btn btn-sm btn-outline-secondary">Plus d'informations <svg
                                             class="svg-inline--fa fa-eye fa-w-18" aria-hidden="true" data-prefix="fas"
                                             data-icon="eye" role="img" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 576 512" data-fa-i2svg="">

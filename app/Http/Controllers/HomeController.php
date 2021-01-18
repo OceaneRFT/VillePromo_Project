@@ -33,4 +33,12 @@ class HomeController extends Controller
         // dd($produits);
         return view('homepage', compact('produits'));
     }
+
+    public function productpage(Request $request)
+    {
+        // echo"page produit";
+        // dd($request->id);
+        $produit = Product::find($request->id);
+        return view('productpage', compact('produit'));
+    }
 }

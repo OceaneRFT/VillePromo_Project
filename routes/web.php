@@ -22,6 +22,9 @@ Auth::routes();
 //--Home
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']); 
 
+//--Pages
+Route::get('/product/{id}', [App\Http\Controllers\HomeController::class, 'productpage'])->name('voir_produit'); 
+
 
 //--Admin   
 Route::get('/admin',[App\Http\Controllers\AdminController::class, 'index'])->name('admin');
@@ -46,9 +49,9 @@ Route::get('/admin/boutiques', function () {
 Route::get('/shop', function () {
     return view('shop');
 });
-Route::get('/product', function () {
-    return view('productpage');
-});
+// Route::get('/product', function () {
+//     return view('productpage');
+// });
 
 
 //--Requetes Ajax
