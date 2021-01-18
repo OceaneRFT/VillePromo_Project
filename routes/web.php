@@ -24,7 +24,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 //--Pages
 Route::get('/product/{id}', [App\Http\Controllers\HomeController::class, 'productpage'])->name('voir_produit'); 
-
+// Route::get('/category', function () {
+//     return view('category');
+// });
+Route::get('/category', [App\Http\Controllers\HomeController::class, 'viewByCategory']); 
 
 //--Admin   
 Route::get('/admin',[App\Http\Controllers\AdminController::class, 'index'])->name('admin');
@@ -40,19 +43,6 @@ Route::get('/admin/produits', function () {
 Route::get('/admin/boutiques', function () {
     return view('/admin/boutiques');
 });
-
-
-//--Liens pages 
-// Route::get('/', function () {
-//     return view('homepage');
-// });
-Route::get('/shop', function () {
-    return view('shop');
-});
-// Route::get('/product', function () {
-//     return view('productpage');
-// });
-
 
 //--Requetes Ajax
 Route::post('/get', [App\Http\Controllers\AdminController::class, 'get']);

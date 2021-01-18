@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +20,7 @@ class HomeController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
-        $this->middleware('guest');
+        // $this->middleware('guest');
     }
 
     /**
@@ -40,5 +41,12 @@ class HomeController extends Controller
         // dd($request->id);
         $produit = Product::find($request->id);
         return view('productpage', compact('produit'));
+    }
+
+    public function viewByCategory(){
+        //récupérer toutes les catégories
+        $categories = Category::where('id',1)->get();
+        dd($categories);
+        return view('category');
     }
 }

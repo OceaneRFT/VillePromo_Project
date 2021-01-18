@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'villePromo') }}</title>
@@ -40,102 +40,6 @@
 </head>
 
 <body>
-    {{-- <div id="app">
-
-        <nav class="ui menu nav_menu">
-            <a href="/" class="header item">
-                LOGO
-            </a>
-            <a href="/shop" class="item">
-                Boutique
-            </a>
-            <a href="/product" class="item">
-                Catégorie produits
-            </a>
-            <a class="item">
-                A propos
-            </a>
-
-
-
-
-            <section class="container search">
-                <div class="ui action input nav">
-                    <input type="text" placeholder="Rechercher un produit...">
-                    <select class="ui compact selection dropdown">
-                        <option value="all">Tout</option>
-                        <option value="products">Produits</option>
-                    </select>
-                    <div class="ui button">Rechercher</div>
-                </div>
-            </section>
-
-            <section class="container customer">
-                <div class="ui vertical animated button" tabindex="0">
-                    <div class="hidden content">Panier</div>
-                    <div class="visible content">
-                        <i class="shop icon"></i>
-                    </div>
-                </div>
-                @guest
-
-                <div class="item_sign">
-                    <a href="/register" class="ui primary button">S'enregistrer</a>
-                </div>
-                <div class="item_login">
-                    <a href="/login" class="ui button">Se connecter</a>
-                </div>
-                @endguest
-
-                @auth
-                @if (Auth::user()->isadmin > 0)
-                    <a href="/admin" class="ui toggle button">Tableau de bord</a>
-                @endif
-
-                <div class="nav-item dropdown">
-
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" v-pre>
-                        Bienvenue {{ Auth::user()->pseudo }}
-                    </a>
-
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-                            {{ __(' Se déconnecter') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </div>
-                @endauth
-
-            </section>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-
-        <!--Footer-->
-        <section class="newsletter">
-            <div class="ui column grid">
-                <div class="column">
-                    <div class="ui segment">
-                        <h1>Newsletter</h1>
-                        <p>Inscrivez vous afin de recevoir en avant première nos offres exclusives</p>
-                        <div class="ui fluid action input">
-                            <input type="text" placeholder="Indiquez votre adresse mail...">
-                            <div class="ui button">S'inscrire</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div> --}}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="/">LOGO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
@@ -146,11 +50,11 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/shop">Boutique
+                    <a class="nav-link" href="">Boutique
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/product">Produits</a>
+                    <a class="nav-link" href="">Produits</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">A Propos</a>
@@ -186,7 +90,7 @@
             Bienvenue {{ Auth::user()->pseudo }}
             <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
-                                                                                 document.getElementById('logout-form').submit();">
+                                                                                         document.getElementById('logout-form').submit();">
                 {{ __(' Se déconnecter') }}
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -194,9 +98,34 @@
             </form>
         </div>
         </div>
-
     @endauth
 
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Films</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Séries TV</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Musique</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Jeux-vidéos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sport</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <main class="py-4">
         @yield('content')
     </main>
