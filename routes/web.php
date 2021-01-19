@@ -25,7 +25,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 //--Pages
 Route::get('/product/{id}', [App\Http\Controllers\HomeController::class, 'productpage'])->name('voir_produit'); 
 
-Route::get('/category', [App\Http\Controllers\HomeController::class, 'viewByCategory']); 
+Route::get('/category/{id}', [App\Http\Controllers\HomeController::class, 'viewByCategory'])->name('voir_produit_par_C'); 
 
 //--Admin   
 Route::get('/admin',[App\Http\Controllers\AdminController::class, 'index'])->name('admin');
