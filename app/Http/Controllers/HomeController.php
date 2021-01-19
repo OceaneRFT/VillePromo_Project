@@ -43,10 +43,10 @@ class HomeController extends Controller
         return view('productpage', compact('produit'));
     }
 
-    public function viewByCategory(){
-        //récupérer toutes les catégories
-        $categories = Category::where('id',1)->get();
-        dd($categories);
+    public function viewByCategory()
+    {
+        // $categories = DB::table('categories')->get('name');
+        // dd($categories);
         return view('category');
     }
 }

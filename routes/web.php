@@ -24,9 +24,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 //--Pages
 Route::get('/product/{id}', [App\Http\Controllers\HomeController::class, 'productpage'])->name('voir_produit'); 
-// Route::get('/category', function () {
-//     return view('category');
-// });
+
 Route::get('/category', [App\Http\Controllers\HomeController::class, 'viewByCategory']); 
 
 //--Admin   
