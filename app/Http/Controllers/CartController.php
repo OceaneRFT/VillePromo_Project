@@ -19,13 +19,14 @@ class CartController extends Controller
             'name' => $produit->name,
             'price' => $produit->price,
             'quantity' => $request->quantity,
-            'attributes' => array()
+            'attributes' => array('photo'=>$produit->picture)
         ));
         return redirect(route('cart_index'));
     }
 
     public function index(){
         $content = Cart::getContent();
-        dd($content);
+        // dd($content);
+        return view('panier',compact('content'));
     }
 }
