@@ -18,18 +18,16 @@ use Illuminate\Support\Facades\Auth;
 //--Auth
 Auth::routes();
 
-
 //--Home
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']); 
 
 //--Pages
 Route::get('/product/{id}', [App\Http\Controllers\HomeController::class, 'productpage'])->name('voir_produit'); 
-
 Route::get('/category/{id}', [App\Http\Controllers\HomeController::class, 'viewByCategory'])->name('voir_produit_par_C');
 
-Route::get('/panier', function () {
-    return view('panier');
-});
+//--Gestion page panier
+Route::post('/panier/add/{id}',[App\Http\Controllers\CartController::class, 'add'])->name('cart_add');
+Route::get('/panier',[App\Http\Controllers\CartController::class, 'index'])->name('cart_index');
 
 //--Admin   
 Route::get('/admin',[App\Http\Controllers\AdminController::class, 'index'])->name('admin');

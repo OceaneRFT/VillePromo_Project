@@ -1,7 +1,7 @@
 @extends('layouts.public.layoutPublic')
 
 @section('content')
-{{-- {{ dump($produit) }} --}}
+    {{-- {{ dump($produit) }} --}}
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-6">
@@ -14,18 +14,14 @@
                 <h5>{{ $produit->price }} €</h5>
                 <p class="lead text-muted">{{ $produit->description }}</p>
                 <hr>
-                <label for="size">Choisissez votre quantité</label>
-                <select name="size" id="size" class="form-control">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <p>
-                    <a href="#" class="btn btn-cart my-2 btn-block"><i class="fas fa-shopping-cart"></i> Ajouter au
-                        Panier</a>
-                </p>
+                <form action="{{ route('cart_add',['id'=>$produit->id]) }}" method="POST" id="panier_add">
+                    @csrf
+                    <label for="quantity">Choisissez votre quantité</label>
+                    <input class="form-control" name="quantity" id=""quantity type="number" value="1">
+                </form>
+                <button type="submit" form="panier_add" class="btn btn-cart my-2 btn-block"><i class="fas fa-shopping-cart"></i> Ajouter au
+                    Panier
+                    </button>
             </div>
         </div>
     </div>
