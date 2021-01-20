@@ -5,31 +5,24 @@
         <div class="row justify-content-center">
             <div class="col">
                 <br>
-                <table class="ui compact celled definition table">
+                <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>Boutiques</th>
-                            <th>Photo</th>
-                            <th>Description</th>
-                            <th>Numéro de téléphone</th>
-                            <th>Adresse</th>
-                            <th>Code Postal</th>
-                            <th>Pays</th>
-                            <th>Date de création</th>
-                            <th>Date de mise à jour</th>
-                            <th>Modifier la boutique</th>
-                            <th>Supprimer la boutique</th>
+                            <th scope="col">Boutiques</th>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Numéro de téléphone</th>
+                            <th scope="col">Adresse</th>
+                            <th scope="col">Code Postal</th>
+                            <th scope="col">Pays</th>
+                            <th scope="col">Date de création</th>
+                            <th scope="col">Date de mise à jour</th>
+                            <th scope="col">Modifier la boutique</th>
+                            <th scope="col">Supprimer la boutique</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="boutique in boutiques">
-                            <td class="collapsing">
-                                {{-- <div class="ui fitted checkbox">
-                                    <input type="checkbox">
-                                    <label></label>
-                                </div> --}}
-                            </td>
                             <td> @{{ boutique . name }} </td>
                             <td>@{{ boutique . picture }}</td>
                             <td>@{{ boutique . description }}</td>
@@ -39,8 +32,8 @@
                             <td>@{{ boutique . country }}</td>
                             <td>@{{ boutique . created_at }}</td>
                             <td>@{{ boutique . updated_at }}</td>
-                            <td> <button ng-click="startEdit(boutique)">Editer</button> </td>
-                            <td> <button class="ui small button" ng-click="startDelete(boutique)">Supprimer</button> </td>
+                            <td> <button class="btn btn-outline-success" ng-click="startEdit(boutique)">Editer</button> </td>
+                            <td> <button class="btn btn-outline-danger" ng-click="startDelete(boutique)">Supprimer</button> </td>
                         </tr>
                     </tbody>
 
@@ -72,7 +65,7 @@
 
             {{------------------------------------------- MODAL
             -------------------------------------------}}
-            <div ng-show="showModal" class="modal-angular">
+            <div ng-show="showModal" class="modal">
                 <div class="modal" ng-show="showModal">
 
                     <div class="ui form">

@@ -5,30 +5,23 @@
         <div class="row justify-content-center">
             <div class="col">
                 <br>
-                <table class="ui compact celled definition table">
+                <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>Catégories</th>
-                            <th>Description</th>
-                            <th>Photo</th>
-                            <th>Modifier la catégorie</th>
-                            <th>Supprimer la catégorie</th>
+                            <th scope="col">Catégories</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Modifier la catégorie</th>
+                            <th scope="col">Supprimer la catégorie</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="categorie in categories">
-                            <td class="collapsing">
-                                {{-- <div class="ui fitted checkbox">
-                                    <input type="checkbox">
-                                    <label></label>
-                                </div> --}}
-                            </td>
                             <td> @{{ categorie . name }} </td>
                             <td>@{{ categorie . description }}</td>
                             <td>@{{ categorie . picture }}</td>
-                            <td> <button ng-click="startEdit(categorie)">Editer</button> </td>
-                            <td> <button class="ui small button" ng-click="startDelete(categorie)">Supprimer</button> </td>
+                            <td> <button class="btn btn-outline-success" ng-click="startEdit(categorie)">Editer</button> </td>
+                            <td> <button class="btn btn-outline-danger" ng-click="startDelete(categorie)">Supprimer</button> </td>
                         </tr>
                     </tbody>
 
@@ -47,7 +40,7 @@
 
                                 <button ng-if="page<totalpages" ng-click="next()">SUIVANT</button>
 
-                                <div class="ui right floated small primary button" ng-click="stratAdd()">
+                                <div class="btn btn-outline-info" ng-click="stratAdd()">
                                     Ajouter une catégorie
                                 </div>
                             </th>
@@ -60,10 +53,10 @@
 
             {{------------------------------------------- MODAL
             -------------------------------------------}}
-            <div ng-show="showModal" class="modal-angular">
+            <div ng-show="showModal" class="modal">
                 <div class="modal" ng-show="showModal">
 
-                    <div class="ui form">
+                    <div class="form">
                         <div class="three fields">
                             <div class="field">
                                 <label>Nom catégorie</label>

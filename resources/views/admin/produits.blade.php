@@ -5,34 +5,27 @@
         <div class="row justify-content-center">
 
             <br>
-            <table class="ui compact celled definition table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>Produits</th>
-                        <th>Description</th>
-                        <th>Prix</th>
-                        <th>Stock produit</th>
-                        <th>Photo</th>
-                        <th>Modifier le produit</th>
-                        <th>Supprimer le produit</th>
+                        <th scope="col">Produits</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Stock produit</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Modifier le produit</th>
+                        <th scope="col">Supprimer le produit</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="produit in produits">
-                        <td class="collapsing">
-                            {{-- <div class="ui fitted checkbox">
-                                <input type="checkbox">
-                                <label></label>
-                            </div> --}}
-                        </td>
                         <td> @{{ produit . name }} </td>
                         <td>@{{ produit . description }}</td>
                         <td>@{{ produit . price }}</td>
                         <td>@{{ produit . SKU }}</td>
                         <td>@{{ produit . picture }}</td>
-                        <td> <button ng-click="startEdit(produit)">Editer</button> </td>
-                        <td> <button class="ui small button" ng-click="startDelete(produit)">Supprimer</button> </td>
+                        <td> <button class="btn btn-outline-success" ng-click="startEdit(produit)">Editer</button> </td>
+                        <td> <button class="btn btn-outline-danger" ng-click="startDelete(produit)">Supprimer</button> </td>
                     </tr>
                 </tbody>
 
@@ -50,7 +43,7 @@
 
                             <button ng-if="page<totalpages" ng-click="next()">SUIVANT</button>
 
-                            <div class="ui right floated small primary button" ng-click="stratAdd()">
+                            <div class="btn btn-outline-info" ng-click="stratAdd()">
                                 Ajouter un produit
                             </div>
                         </th>

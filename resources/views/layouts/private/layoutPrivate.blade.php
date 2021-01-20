@@ -40,127 +40,92 @@
 </head>
 
 <body>
-    <div id="app">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">LOGO</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <nav class="ui menu nav_menu">
-            <a href="/" class="header item">
-                LOGO
-            </a>
-            <a href="/shop" class="item">
-                Boutique
-            </a>
-            <a href="/product" class="item">
-                Catégorie produits
-            </a>
-            <a class="item">
-                A propos
-            </a>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="">Boutique
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Produits</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">A Propos</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Recherche">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Rechercher</button>
+            </form>
 
-            <section class="container search">
-                <div class="ui action input nav">
-                    <input type="text" placeholder="Rechercher un produit...">
-                    <select class="ui compact selection dropdown">
-                        <option value="all">Tout</option>
-                        <option value="products">Produits</option>
-                    </select>
-                    <div class="ui button">Rechercher</div>
-                </div>
-            </section>
-
-            <section class="container customer">
-                <div class="ui vertical animated button" tabindex="0">
-                    <div class="hidden content">Panier</div>
-                    <div class="visible content">
-                        <i class="shop icon"></i>
-                    </div>
-                </div>
+            <div>
+                <button type="button" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-bag-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z">
+                        </path>
+                    </svg>
+                    Panier
+                </button>
                 @guest
-
-                    <div class="item_sign">
-                        <a href="/register" class="ui primary button">S'enregistrer</a>
-                    </div>
-                    <div class="item_login">
-                        <a href="/login" class="ui button">Se connecter</a>
-                    </div>
+                    <a type="button" href="/register" class="btn btn-info">S'enregistrer</a>
+                    <a type="button" href="/login" class="btn btn-secondary">Se connecter</a>
                 @endguest
+            </div>
+        </div>
+    </nav>
+    @auth
+        @if (Auth::user()->isadmin > 0)
+            <a type="button" href="/admin" class="btn btn-secondary">Tableau de bord</a>
+        @endif
+        <div class="nav-item dropdown">
+            Bienvenue {{ Auth::user()->pseudo }}
+            <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                                                                                                 document.getElementById('logout-form').submit();">
+                {{ __(' Se déconnecter') }}
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </div>
+        </div>
+    @endauth
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="/admin/contacts">Contacts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="/admin/produits">Produits</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="/admin/categories">Catégories</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="/admin/boutiques">Boutiques</a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="row">@yield('content')</div>
+    </div>
 
-                @auth
-                    @if (Auth::user()->isadmin > 0)
-                        <a href="/admin" class="ui toggle button">Tableau de bord</a>
-                    @endif
-
-                    <div class="nav-item dropdown">
-
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false" v-pre>
-                            Bienvenue {{ Auth::user()->pseudo }}
-                        </a>
-
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                         document.getElementById('logout-form').submit();">
-                                {{ __(' Se déconnecter') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </div>
-                @endauth
-
-            </section>
-        </nav>
-
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('TABLEAU DE BORD ADMINISTRATEUR') }}</div>
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                    </div>
-                    <br>
+    <!--Footer-->
+    {{-- <section class="">
+        <div class="ui column grid">
+            <div class="column">
+                <div class="ui segment">
                 </div>
             </div>
         </div>
-
-        <main class="container dashbordAdmin">
-            <div class="row dashbordAdmin">
-
-                <div class="ui vertical menu">
-                    <a class="item" href="/admin/contacts">
-                        <h4 class="ui header">Contacts</h4>
-                    </a>
-                    <a class="item" href="/admin/categories">
-                        <h4 class="ui header">Catégories</h4>
-                    </a>
-                    <a class="item" href="/admin/produits">
-                        <h4 class="ui header">Produits</h4>
-                    </a>
-                    <a class="item" href="/admin/boutiques">
-                        <h4 class="ui header">Boutiques</h4>
-                    </a>
-                </div>
-
-            </div>
-            <div class="row">@yield('content')</div>
-
-        </main>
-
-        <!--Footer-->
-        {{-- <section class="">
-            <div class="ui column grid">
-                <div class="column">
-                    <div class="ui segment">
-                    </div>
-                </div>
-            </div>
-        </section> --}}
+    </section> --}}
     </div>
 </body>
 
