@@ -4,6 +4,7 @@ app.controller('clientControlleur', function ($scope, $http) {
     $scope.nbr_ligne = 3;
     $scope.totalpages = 0;
     $scope.paginationsButtons = [];
+    $scope.showModal = false;
 
     $scope.getAjax = function () {
         $scope.paginationsButtons = [];
@@ -37,6 +38,12 @@ app.controller('clientControlleur', function ($scope, $http) {
         $scope.page = page;
         $scope.getAjax()
     }
+
+    $scope.closemodal = function(){
+        // console.log("here");
+       $scope.showModal = false;
+    //    $scope.toEdit = null; //init
+    };
 
     // ------------------------------------------ Editer client ------------------------------------------ //
     $scope.startEdit = function (client) {
@@ -94,7 +101,7 @@ app.controller('categorieControlleur', function ($scope, $http) {
     $scope.getAjax = function () {
         $scope.paginationsButtons = [];
         $http.post("/get", { table: "categories", page: $scope.page, nbr_ligne: $scope.nbr_ligne }).then(function (data) {     //Afficher les données de la bdd
-            console.log("data", data);
+            // console.log("data", data);
             $scope.categories = data.data.data;
             $scope.total = data.data.total;
             $scope.totalpages = Math.round($scope.total / $scope.nbr_ligne);
