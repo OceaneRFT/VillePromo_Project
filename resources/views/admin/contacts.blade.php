@@ -27,7 +27,7 @@
                             </td>
                         </tr>
                         <div class="btn btn-outline-info" ng-click="stratAdd()">
-                            Ajouter un produit
+                            Ajouter un utilisateur
                         </div>
                     </tbody>
                     <tfoot class="full-width">
