@@ -12,7 +12,7 @@
                             <th>Produit</th>
                             <th>Qte</th>
                             <th>P.U</th>
-                            <th>Total TTC</th>
+                            <th>Total HT</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,9 +28,10 @@
                                     <a class="pl-2" href=""><i class="fas fa-sync"></i> </a>
                                 </td>
                                 <td>{{ number_format($produit->price, 2) }}€
+                                    {{-- {{ $produit->prixTTC() }} --}}
                                 </td>
                                 <td>
-                                    {{number_format($produit->price * $produit->quantity) }}€
+                                    {{number_format($produit->price * $produit->quantity,2) }}€
                                 </td>
                             </tr>
                         @endforeach
@@ -39,18 +40,18 @@
                     <tfoot>
                         <tr>
                             <td colspan="2"></td>
-                            <td>Total HT</td>
-                            <td>24.17 €</td>
+                            <td>Total TTC</td>
+                            <td>{{number_format($total_ht,2) }}€</td>
                         </tr>
                         <tr>
                             <td colspan="2"></td>
                             <td>TVA (20%)</td>
-                            <td>4.83 €</td>
+                            <td>{{number_format($tva,2) }}€</td>
                         </tr>
                         <tr>
                             <td colspan="2"></td>
                             <td>Total TTC</td>
-                            <td>29.00 €</td>
+                            <td> {{number_format($total_ttc,2) }}€</td>
                         </tr>
                     </tfoot>
                 </table>

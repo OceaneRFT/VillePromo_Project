@@ -51,4 +51,11 @@ class HomeController extends Controller
         $produits = Product::where('category_id',$request->id)->get();
         return view('category', compact('produits'));
     }
+
+    private static $facteur_tva = 1.2;
+
+    public function prixTTC(){
+        $prix_ttc = $this->price * self::$facteur_tva;
+        return number_format($prix_ttc,2);
+    }
 }

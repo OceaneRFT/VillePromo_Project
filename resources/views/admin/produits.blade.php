@@ -36,12 +36,11 @@
                         <th colspan="7">
                             Page : @{{ page }} sur @{{ totalpages }}
 
-                            <button ng-if="page>1" ng-click="previous()">PRECEDENT</button>
+                            <button class="SelPag" ng-if="page>1" ng-click="previous()">«</button> 
 
-                            <button ng-click="GoTo(p)" ng-repeat="(key , p) in paginationsButtons  track by key"
-                                ng-if="page !== p">@{{ p }}</button>
+                            <button class="@{{ page !== p ? 'SelPag' : 'unSelPag' }}" ng-click="GoTo(p)" ng-repeat="(key , p) in paginationsButtons  track by key">@{{ p }}</button>
 
-                            <button ng-if="page<totalpages" ng-click="next()">SUIVANT</button>
+                            <button class="SelPag" ng-if="page<totalpages" ng-click="next()">»</button>
 
                             <div class="btn btn-outline-info" ng-click="stratAdd()">
                                 Ajouter un produit
@@ -56,9 +55,10 @@
 
             {{------------------------------------------- MODAL
             -------------------------------------------}}
-            <div ng-show="showModal" class="modal-angular">
-                <div class="modal" ng-show="showModal">
-
+            showModal : @{{ showModal }}
+            <div ng-if="showModal" class="modal_vp"> <!--ng-show="showModal"-->
+                <div >
+                    <span class="close" ng-click="closemodal()">x</span>
                     <div class="ui form">
                         <div class="five fields">
                             <div class="field">
@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <div class="actions">
-                        <div class="ui red basic cancel button" ng-click="showModal = false">
+                        <div class="ui red basic cancel button" ng-click="closemodal()">
                             <i class="remove icon"></i>
                             Annuler
                         </div>

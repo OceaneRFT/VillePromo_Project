@@ -19,7 +19,7 @@ class CartController extends Controller
             'name' => $produit->name,
             'price' => $produit->price,
             'quantity' => $request->quantity,
-            'attributes' => array('photo'=>$produit->picture)
+            'attributes' => array('photo'=>$produit->picture, 'prix_ttc'=>$produit->prixTTC())
         ));
         return redirect(route('cart_index'));
     }
@@ -27,6 +27,21 @@ class CartController extends Controller
     public function index(){
         $content = Cart::getContent();
         // dd($content);
-        return view('panier',compact('content'));
+
+        $condition = new \Darryldecode\Cart\CartCondition(array(
+            'name' => 'VAT 20%',
+            'type' => 'tax',
+            'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+            'value' => '20%',
+            )
+        );
+        Cart::condition($condition);
+
+        $total_ht = Cart::getTotal();
+      
+        $tva = $total_ht * 0.2;
+        $total_ttc = $total_ht + $tva;
+
+        return view('panier',compact('content','total_ttc','total_ht','tva'));
     }
 }

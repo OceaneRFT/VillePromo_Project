@@ -5,6 +5,39 @@
     -moz-user-select: none;
     user-select: none;
 }
+.close{
+    float : right;
+}
+.close:hover{
+    cursor: pointer;
+}
+.modal_vp{
+    position: fixed;
+    background-color: white;
+    box-shadow: 5px 7px 7px 2px #ddd;
+    padding: 34px 16px;
+    border-radius: 2px;
+    border: 1px solid #80808099;
+    top: 157px;
+}
+
+
+.SelPag{
+    background-color : white;
+    color :black;
+    border: 1px solid #ffffff;
+    font-size: 12px;
+}
+.unSelPag{
+    background-color :black;
+    color : white;
+    border: 1px solid #ffffff;
+    font-size: 12px;
+}
+
+.unSelPag:hover{
+    border: 1px solid #ddd;
+}
 
 @media (min-width: 768px) {
     .bd-placeholder-img-lg {

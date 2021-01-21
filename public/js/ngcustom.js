@@ -125,6 +125,11 @@ app.controller('categorieControlleur', function ($scope, $http) {
         $scope.getAjax()
     }
 
+    $scope.closemodal = function(){
+        console.log("here");
+       //$scope.showModal = false;
+       //$scope.toEdit = null; //init
+    };
     // ------------------------------------------ Editer categorie ------------------------------------------ //
     $scope.startEdit = function (categorie) {
         $scope.showModal = true;

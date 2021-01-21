@@ -11,7 +11,7 @@
             </div>
             <div class="col-6">
                 <h1 class="jumbotron-heading">{{ $produit->name }}</h1>
-                <h5>{{ number_format($produit->price, 2) }}€</h5>
+                <h5>{{ $produit->prixTTC() }}€</h5>
                 <p class="lead text-muted">{{ $produit->description }}</p>
                 <hr>
                 <form action="{{ route('cart_add',['id'=>$produit->id]) }}" method="POST" id="panier_add">

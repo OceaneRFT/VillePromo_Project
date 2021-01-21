@@ -64,7 +64,7 @@ class AdminController extends Controller
 
 
         $table = $POST["table"];
-        $page = $POST['page'] - 1;
+        $page = $POST['page'];
         $limit = $POST['nbr_ligne'];
 
         $query = DB::table($table)
@@ -73,7 +73,7 @@ class AdminController extends Controller
 
         $query = DB::table($table)
             ->offset(($limit * $page) - $limit)->limit($limit)->get();
-
+        
         foreach ($query as $database) {
             $data[] = $database;
         }
@@ -152,8 +152,8 @@ class AdminController extends Controller
             die;
         }
         //update
-        $delete = $POST['delete'];
-        DB::table('users')->delete((array)$delete);
+        $delete = $POST['toDelete'];  
+        DB::table($table)->delete((array)$delete);
         $etat = DB::table($table)
             ->where('id', $delete->id)
             ->delete((array)$delete);
