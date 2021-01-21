@@ -56,9 +56,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/category/1">Produits</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">A Propos</a>
-                </li>
                 @auth
                     @if (Auth::user()->isadmin > 0)
                         <a class="nav-link" href="/admin">Tableau de bord</a>

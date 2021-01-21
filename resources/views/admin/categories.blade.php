@@ -23,6 +23,9 @@
                             <td> <button class="btn btn-outline-success" ng-click="startEdit(categorie)">Editer</button> </td>
                             <td> <button class="btn btn-outline-danger" ng-click="startDelete(categorie)">Supprimer</button> </td>
                         </tr>
+                        <div class="btn btn-outline-info" ng-click="stratAdd()">
+                            Ajouter une catégorie
+                        </div>
                     </tbody>
 
                     <tfoot class="full-width">

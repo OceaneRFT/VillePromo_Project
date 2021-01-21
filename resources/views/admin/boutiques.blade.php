@@ -37,6 +37,9 @@
                             <td> <button class="btn btn-outline-danger" ng-click="startDelete(boutique)">Supprimer</button>
                             </td>
                         </tr>
+                        <div class="btn btn-outline-info" ng-click="stratAdd()">
+                            Ajouter une boutique
+                        </div>
                     </tbody>
 
                     <tfoot class="full-width">
@@ -105,7 +108,7 @@
                             <i class="checkmark icon"></i>
                             Supprimer
                         </div>
-                        <div ng-if="etatREST == 'edit'" ng-click="editAjax(toEdit)" class="ui green ok inverted button">
+                        <div ng-if="etatREST == 'edit'" ng-click="editAjax(toEdit)" class="ui green ok inverted button"> 
                             <i class="checkmark icon"></i>
                             Editer
                         </div>

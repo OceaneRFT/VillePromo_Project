@@ -20,7 +20,6 @@ app.controller('clientControlleur', function ($scope, $http) {
         });
     };
 
-
     $scope.getAjax();
 
     $scope.next = function () {   // Gestion bouton pagination
@@ -126,9 +125,9 @@ app.controller('categorieControlleur', function ($scope, $http) {
     }
 
     $scope.closemodal = function(){
-        console.log("here");
-       //$scope.showModal = false;
-       //$scope.toEdit = null; //init
+        // console.log("here");
+       $showModal = false;
+    //    $scope.toEdit = null; //init
     };
     // ------------------------------------------ Editer categorie ------------------------------------------ //
     $scope.startEdit = function (categorie) {
