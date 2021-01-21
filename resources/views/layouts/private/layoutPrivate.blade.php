@@ -13,6 +13,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-ie8-build/1.4.7/angular.min.js" defer></script>
     <script src="{{ asset('js/ngcustom.js') }}" defer></script>
     <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -65,7 +69,7 @@
                 Bienvenue {{ Auth::user()->pseudo }}
                 <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
-                                                                                                         document.getElementById('logout-form').submit();">
+                                                                                                             document.getElementById('logout-form').submit();">
                     {{ __(' Se déconnecter') }}
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -73,35 +77,35 @@
                 </form>
             </div>
         @endauth
-        </nav>
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="/admin/contacts">Contacts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="/admin/produits">Produits</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="/admin/categories">Catégories</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="/admin/boutiques">Boutiques</a>
-            </li>
-        </ul>
-        <div id="myTabContent" class="tab-content">
-            <div class="row">@yield('content')</div>
-        </div>
+    </nav>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="/admin/contacts">Contacts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="/admin/produits">Produits</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="/admin/categories">Catégories</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="/admin/boutiques">Boutiques</a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="row">@yield('content')</div>
+    </div>
 
-        <!--Footer-->
-        {{-- <section class="">
-            <div class="ui column grid">
-                <div class="column">
-                    <div class="ui segment">
-                    </div>
+    <!--Footer-->
+    {{-- <section class="">
+        <div class="ui column grid">
+            <div class="column">
+                <div class="ui segment">
                 </div>
             </div>
-        </section> --}}
         </div>
+    </section> --}}
+    </div>
 </body>
 
 </html>

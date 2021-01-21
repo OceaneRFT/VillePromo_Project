@@ -3,8 +3,8 @@
 
     <div class="container" ng-app="villepromo" ng-controller="categorieControlleur">
         <div class="row justify-content-center">
-            <div class="col">
                 <br>
+                <div class="col">
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -25,38 +25,30 @@
                         </tr>
                     </tbody>
 
-
                     <tfoot class="full-width">
                         <tr>
                             <th></th>
 
-                            <th colspan="6">
+                            <th colspan="10">
                                 Page : @{{ page }} sur @{{ totalpages }}
 
-                                <button ng-if="page>1" ng-click="previous()">PRECEDENT</button>
+                                <button class="SelPag" ng-if="page>1" ng-click="previous()">«</button>
 
-                                <button ng-click="GoTo(p)" ng-repeat="(key , p) in paginationsButtons  track by key"
-                                    ng-if="page !== p">@{{ p }}</button>
+                                <button class="@{{ page !== p ? 'SelPag' : 'unSelPag' }}" ng-click="GoTo(p)"
+                                    ng-repeat="(key , p) in paginationsButtons  track by key">@{{ p }}</button>
 
-                                <button ng-if="page<totalpages" ng-click="next()">SUIVANT</button>
-
-                                <div class="btn btn-outline-info" ng-click="stratAdd()">
-                                    Ajouter une catégorie
-                                </div>
+                                <button class="SelPag" ng-if="page<totalpages" ng-click="next()">»</button>
                             </th>
                         </tr>
                     </tfoot>
                 </table>
-
-
             </div>
 
             {{------------------------------------------- MODAL
             -------------------------------------------}}
-            <div ng-show="showModal" class="modal">
-                <div class="modal" ng-show="showModal">
-
-                    <div class="form">
+            <div ng-if="showModal" class="modal_vp">
+                <div>
+                    <div class="ui form">
                         <div class="three fields">
                             <div class="field">
                                 <label>Nom catégorie</label>
@@ -70,11 +62,10 @@
                                 <label>Photo</label>
                                 <input type="text" ng-model="toEdit.picture" placeholder="Photo de la catégorie">
                             </div>
-
                         </div>
                     </div>
                     <div class="actions">
-                        <div class="ui red basic cancel button" ng-click="showModal = false">
+                        <div class="ui red basic cancel button" ng-click="closemodal()">
                             <i class="remove icon"></i>
                             Annuler
                         </div>

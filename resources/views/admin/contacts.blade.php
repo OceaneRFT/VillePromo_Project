@@ -3,8 +3,8 @@
 
     <div class="container" ng-app="villepromo" ng-controller="clientControlleur">
         <div class="row justify-content-center">
+            <br>
             <div class="col">
-                <br>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -17,35 +17,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="client in clients" class="table">
+                        <tr ng-repeat="client in clients">
                             <td> @{{ client . first_name }} @{{ client . last_name }}</td>
                             <td>@{{ client . created_at }}</td>
                             <td>@{{ client . email }}</td>
                             <td>@{{ client . phone }}</td>
                             <td> <button class="btn btn-outline-success" ng-click="startEdit(client)">Editer</button> </td>
-                            <td> <button class="btn btn-outline-danger" ng-click="startDelete(client)">Supprimer</button> </td>
+                            <td> <button class="btn btn-outline-danger" ng-click="startDelete(client)">Supprimer</button>
+                            </td>
                         </tr>
-                        <th>
-                            Page : @{{ page }} sur @{{ totalpages }}
-                            <button type="button" ng-if="page>1" ng-click="previous()">PRECEDENT</button>
-                            <button type="button" ng-click="GoTo(p)" ng-repeat="(key , p) in paginationsButtons  track by key"
-                                ng-if="page !== p">@{{ p }}</button>
-                            <button type="button" ng-if="page<totalpages" ng-click="next()">SUIVANT</button>
-                        </th>
                         <div class="btn btn-outline-info" ng-click="stratAdd()">
-                            <i class="user icon"></i>
-                            Ajouter un client
+                            Ajouter un produit
                         </div>
                     </tbody>
+                    <tfoot class="full-width">
+                        <tr>
+                            <th></th>
+
+                            <th colspan="10">
+                                Page : @{{ page }} sur @{{ totalpages }}
+
+                                <button class="SelPag" ng-if="page>1" ng-click="previous()">«</button>
+
+                                <button class="@{{ page !== p ? 'SelPag' : 'unSelPag' }}" ng-click="GoTo(p)"
+                                    ng-repeat="(key , p) in paginationsButtons  track by key">@{{ p }}</button>
+
+                                <button class="SelPag" ng-if="page<totalpages" ng-click="next()">»</button>
+                            </th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
 
             {{------------------------------------------- MODAL
             -------------------------------------------}}
-            <div ng-show="showModal" class="modal">
-                <div class="modal" ng-show="showModal">
+            <div ng-if="showModal" class="modal_vp">
 
-                    <div class="form">
+                    <div class="ui form">
                         <div class="four fields">
                             <div class="field">
                                 <label>Nom de famille</label>
@@ -67,7 +75,7 @@
                         </div>
                     </div>
                     <div class="actions">
-                        <div class="ui red basic cancel button" ng-click="showModal = false">
+                        <div class="ui red basic cancel button" ng-click="closemodal()">
                             <i class="remove icon"></i>
                             Annuler
                         </div>

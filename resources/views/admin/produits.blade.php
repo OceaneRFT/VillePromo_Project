@@ -3,62 +3,60 @@
 
     <div class="container" ng-app="villepromo" ng-controller="produitControlleur">
         <div class="row justify-content-center">
-
             <br>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Produits</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Prix</th>
-                        <th scope="col">Stock produit</th>
-                        <th scope="col">Photo</th>
-                        <th scope="col">Modifier le produit</th>
-                        <th scope="col">Supprimer le produit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="produit in produits">
-                        <td> @{{ produit . name }} </td>
-                        <td>@{{ produit . description }}</td>
-                        <td>@{{ produit . price }}</td>
-                        <td>@{{ produit . SKU }}</td>
-                        <td>@{{ produit . picture }}</td>
-                        <td> <button class="btn btn-outline-success" ng-click="startEdit(produit)">Editer</button> </td>
-                        <td> <button class="btn btn-outline-danger" ng-click="startDelete(produit)">Supprimer</button> </td>
-                    </tr>
-                </tbody>
+            <div class="col">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Produits</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Stock produit</th>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Modifier le produit</th>
+                            <th scope="col">Supprimer le produit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="produit in produits">
+                            <td> @{{ produit . name }} </td>
+                            <td>@{{ produit . description }}</td>
+                            <td>@{{ produit . price }}</td>
+                            <td>@{{ produit . SKU }}</td>
+                            <td>@{{ produit . picture }}</td>
+                            <td> <button class="btn btn-outline-success" ng-click="startEdit(produit)">Editer</button> </td>
+                            <td> <button class="btn btn-outline-danger" ng-click="startDelete(produit)">Supprimer</button>
+                            </td>
+                        </tr>
+                        <div class="btn btn-outline-info" ng-click="stratAdd()">
+                            Ajouter un produit
+                        </div>
+                    </tbody>
 
-                <tfoot class="full-width">
-                    <tr>
-                        <th></th>
+                    <tfoot class="full-width">
+                        <tr>
+                            <th></th>
 
-                        <th colspan="7">
-                            Page : @{{ page }} sur @{{ totalpages }}
+                            <th colspan="10">
+                                Page : @{{ page }} sur @{{ totalpages }}
 
-                            <button class="SelPag" ng-if="page>1" ng-click="previous()">«</button> 
+                                <button class="SelPag" ng-if="page>1" ng-click="previous()">«</button>
 
-                            <button class="@{{ page !== p ? 'SelPag' : 'unSelPag' }}" ng-click="GoTo(p)" ng-repeat="(key , p) in paginationsButtons  track by key">@{{ p }}</button>
+                                <button class="@{{ page !== p ? 'SelPag' : 'unSelPag' }}" ng-click="GoTo(p)"
+                                    ng-repeat="(key , p) in paginationsButtons  track by key">@{{ p }}</button>
 
-                            <button class="SelPag" ng-if="page<totalpages" ng-click="next()">»</button>
-
-                            <div class="btn btn-outline-info" ng-click="stratAdd()">
-                                Ajouter un produit
-                            </div>
-                        </th>
-                    </tr>
-                </tfoot>
-            </table>
-
-
-
+                                <button class="SelPag" ng-if="page<totalpages" ng-click="next()">»</button>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
 
             {{------------------------------------------- MODAL
             -------------------------------------------}}
-            showModal : @{{ showModal }}
-            <div ng-if="showModal" class="modal_vp"> <!--ng-show="showModal"-->
-                <div >
-                    <span class="close" ng-click="closemodal()">x</span>
+            <div ng-if="showModal" class="modal_vp">
+                <!--ng-show="showModal"-->
+                <div>
                     <div class="ui form">
                         <div class="five fields">
                             <div class="field">
