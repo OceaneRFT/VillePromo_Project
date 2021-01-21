@@ -17,7 +17,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="client in clients">
+                        <tr ng-if="!items && loading">
+                            <td><div class="spinner-border" role="status">
+                                <span class="sr-only">Chargement...</span>
+                            </div></td>
+                        </tr>
+                        <tr ng-repeat="client in items">
                             <td> @{{ client . first_name }} @{{ client . last_name }}</td>
                             <td>@{{ client . created_at }}</td>
                             <td>@{{ client . email }}</td>

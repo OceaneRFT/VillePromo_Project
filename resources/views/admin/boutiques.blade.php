@@ -22,7 +22,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="boutique in boutiques">
+                        <tr ng-repeat="boutique in items">
                             <td> @{{ boutique . name }} </td>
                             <td>@{{ boutique . picture }}</td>
                             <td>@{{ boutique . description }}</td>

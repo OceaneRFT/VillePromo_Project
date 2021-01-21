@@ -18,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="produit in produits">
+                        <tr ng-repeat="produit in items">
                             <td> @{{ produit . name }} </td>
                             <td>@{{ produit . description }}</td>
                             <td>@{{ produit . price }}</td>

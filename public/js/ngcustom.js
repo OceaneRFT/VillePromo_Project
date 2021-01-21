@@ -1,6 +1,65 @@
 var app = angular.module('villepromo', []);
 
-app.run(function ($rootScope) {
+app.run(function ($rootScope, $http) {
+    // ------------------------------------------ Pagination ------------------------------------------ //
+    $rootScope.page = 1;
+    $rootScope.nbr_ligne = 3;
+    $rootScope.totalpages = 0;
+    $rootScope.paginationsButtons = [];
+    $rootScope.loading = false;
+
+    $rootScope.activeTab = null;
+    $rootScope.setActiveTab = function(tabName){
+        $rootScope.activeTab = tabName;
+        $rootScope.getAjax(true);
+    }
+
+    $rootScope.getAjax = function (resetPagination = false) {
+        if(!$rootScope.activeTab){
+            return;
+        }
+        const tableName = $rootScope.activeTab;
+        if(resetPagination){
+            $rootScope.paginationsButtons = [];
+        }
+        
+        $rootScope.items = null;
+        $rootScope.loading = true;
+
+        $http.post("/get", { table: tableName, page: $rootScope.page, nbr_ligne: $rootScope.nbr_ligne }).then(function (data) {     //Afficher les données de la bdd
+            console.log("data", data);
+            $rootScope.loading = false;
+
+            $rootScope.items = data.data.data;
+            if(resetPagination){
+                $rootScope.total = data.data.total;
+                $rootScope.totalpages = Math.round($rootScope.total / $rootScope.nbr_ligne);
+                for (var i = 1; i <= $rootScope.totalpages; i++) {
+                    //console.log(i);
+                    $rootScope.paginationsButtons.push(i);
+                    //console.log("$rootScope.paginationsButtons" , $rootScope.paginationsButtons);
+                }
+            }
+        });
+    };
+
+    $rootScope.next = function () {   // Gestion bouton pagination
+        $rootScope.page++;
+        $rootScope.getAjax()
+    }
+
+    $rootScope.previous = function () {
+        $rootScope.page--;
+        $rootScope.getAjax()
+    }
+
+    $rootScope.GoTo = function (page) {
+        $rootScope.page = page;
+        $rootScope.getAjax()
+    }
+
+    // ------------------------------------------ Modal ------------------------------------------ //
+
     $rootScope.showModal = false;
 
     $rootScope.openmodal = function(){
@@ -12,44 +71,7 @@ app.run(function ($rootScope) {
 });
 
 app.controller('clientControlleur', function ($scope, $http) {
-    $scope.page = 1;
-    $scope.nbr_ligne = 3;
-    $scope.totalpages = 0;
-    $scope.paginationsButtons = [];
-    // $scope.closemodal();
-
-    $scope.getAjax = function () {
-        $scope.paginationsButtons = [];
-        $http.post("/get", { table: "users", page: $scope.page, nbr_ligne: $scope.nbr_ligne }).then(function (data) {     //Afficher les données de la bdd
-            console.log("data", data);
-            $scope.clients = data.data.data;
-            $scope.total = data.data.total;
-            $scope.totalpages = Math.round($scope.total / $scope.nbr_ligne);
-            for (var i = 1; i <= $scope.totalpages; i++) {
-                //console.log(i);
-                $scope.paginationsButtons.push(i);
-                //console.log("$scope.paginationsButtons" , $scope.paginationsButtons);
-            }
-        });
-    };
-
-    $scope.getAjax();
-
-    $scope.next = function () {   // Gestion bouton pagination
-        $scope.page++;
-        $scope.getAjax()
-    }
-
-    $scope.previous = function () {
-        $scope.page--;
-        $scope.getAjax()
-    }
-
-    $scope.GoTo = function (page) {
-        // console.log("here");
-        $scope.page = page;
-        $scope.getAjax()
-    }
+    $scope.setActiveTab('users');
 
     // ------------------------------------------ Editer client ------------------------------------------ //
     $scope.startEdit = function (client) {
@@ -100,43 +122,7 @@ app.controller('clientControlleur', function ($scope, $http) {
 
 
 app.controller('categorieControlleur', function ($scope, $http) {
-    $scope.page = 1;
-    $scope.nbr_ligne = 3;
-    $scope.totalpages = 0;
-    $scope.paginationsButtons = [];
-
-    $scope.getAjax = function () {
-        $scope.paginationsButtons = [];
-        $http.post("/get", { table: "categories", page: $scope.page, nbr_ligne: $scope.nbr_ligne }).then(function (data) {     //Afficher les données de la bdd
-            // console.log("data", data);
-            $scope.categories = data.data.data;
-            $scope.total = data.data.total;
-            $scope.totalpages = Math.round($scope.total / $scope.nbr_ligne);
-            for (var i = 1; i <= $scope.totalpages; i++) {
-                //console.log(i);
-                $scope.paginationsButtons.push(i);
-                //console.log("$scope.paginationsButtons" , $scope.paginationsButtons);
-            }
-        });
-    };
-
-    $scope.getAjax();
-
-    $scope.next = function () {   // Gestion bouton pagination
-        $scope.page++;
-        $scope.getAjax()
-    }
-
-    $scope.previous = function () {
-        $scope.page--;
-        $scope.getAjax()
-    }
-
-    $scope.GoTo = function (page) {
-        // console.log("here");
-        $scope.page = page;
-        $scope.getAjax()
-    }
+   $scope.setActiveTab('categories');
 
     // ------------------------------------------ Editer categorie ------------------------------------------ //
     $scope.startEdit = function (categorie) {
@@ -185,44 +171,8 @@ app.controller('categorieControlleur', function ($scope, $http) {
 
 
 app.controller('produitControlleur', function ($scope, $http) {
-    $scope.page = 1;
-    $scope.nbr_ligne = 3;
-    $scope.totalpages = 0;
-    $scope.paginationsButtons = [];
-
-    $scope.getAjax = function () {
-        $scope.paginationsButtons = [];
-        $http.post("/get", { table: "products", page: $scope.page, nbr_ligne: $scope.nbr_ligne }).then(function (data) {     //Afficher les données de la bdd
-            // console.log("data", data);
-            $scope.produits = data.data.data;
-            // console.log("$scope.produits" , $scope.produits);
-            $scope.total = data.data.total;
-            $scope.totalpages = Math.round($scope.total / $scope.nbr_ligne);
-            for (var i = 1; i <= $scope.totalpages; i++) {
-                //console.log(i);
-                $scope.paginationsButtons.push(i);
-                //console.log("$scope.paginationsButtons" , $scope.paginationsButtons);
-            }
-        });
-    };
-
-    $scope.getAjax();
-
-    $scope.next = function () {   // Gestion bouton pagination
-        $scope.page++;
-        $scope.getAjax()
-    }
-
-    $scope.previous = function () {
-        $scope.page--;
-        $scope.getAjax()
-    }
-
-    $scope.GoTo = function (page) {
-        // console.log("here");
-        $scope.page = page;
-        $scope.getAjax()
-    }
+    $scope.setActiveTab('products');
+    
 
     // ------------------------------------------ Editer produit ------------------------------------------ //
     $scope.startEdit = function (produit) {
@@ -271,43 +221,8 @@ app.controller('produitControlleur', function ($scope, $http) {
 
 
 app.controller('boutiqueControlleur', function ($scope, $http) {
-    $scope.page = 1;
-    $scope.nbr_ligne = 3;
-    $scope.totalpages = 0;
-    $scope.paginationsButtons = [];
-
-    $scope.getAjax = function () {
-        $scope.paginationsButtons = [];
-        $http.post("/get", { table: "shops", page: $scope.page, nbr_ligne: $scope.nbr_ligne }).then(function (data) {     //Afficher les données de la bdd
-            console.log("data", data);
-            $scope.boutiques = data.data.data;
-            $scope.total = data.data.total;
-            $scope.totalpages = Math.round($scope.total / $scope.nbr_ligne);
-            for (var i = 1; i <= $scope.totalpages; i++) {
-                //console.log(i);
-                $scope.paginationsButtons.push(i);
-                //console.log("$scope.paginationsButtons" , $scope.paginationsButtons);
-            }
-        });
-    };
-
-    $scope.getAjax();
-
-    $scope.next = function () {   // Gestion bouton pagination
-        $scope.page++;
-        $scope.getAjax()
-    }
-
-    $scope.previous = function () {
-        $scope.page--;
-        $scope.getAjax()
-    }
-
-    $scope.GoTo = function (page) {
-        // console.log("here");
-        $scope.page = page;
-        $scope.getAjax()
-    }
+    $scope.setActiveTab('shops');
+    
 
     // ------------------------------------------ Editer boutique ------------------------------------------ //
     $scope.startEdit = function (boutique) {

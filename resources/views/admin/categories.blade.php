@@ -16,7 +16,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="categorie in categories">
+                        <tr ng-repeat="categorie in items">
                             <td> @{{ categorie . name }} </td>
                             <td>@{{ categorie . description }}</td>
                             <td>@{{ categorie . picture }}</td>
