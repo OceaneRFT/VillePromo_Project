@@ -128,7 +128,7 @@ class AdminController extends Controller
             die;
         }
         //update
-        $add = $POST['add'];
+        $add = $POST['toAdd'];
         DB::table($table)->insert((array)$add);
         return json_encode(array("erreur" => false, "etat" => null));
         die;
