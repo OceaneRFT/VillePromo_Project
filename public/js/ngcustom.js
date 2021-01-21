@@ -1,10 +1,22 @@
 var app = angular.module('villepromo', []);
+
+app.run(function ($rootScope) {
+    $rootScope.showModal = false;
+
+    $rootScope.openmodal = function(){
+        $rootScope.showModal = true;
+     };
+    $rootScope.closemodal = function(){
+       $rootScope.showModal = false;
+    };
+});
+
 app.controller('clientControlleur', function ($scope, $http) {
     $scope.page = 1;
     $scope.nbr_ligne = 3;
     $scope.totalpages = 0;
     $scope.paginationsButtons = [];
-    $scope.showModal = false;
+    // $scope.closemodal();
 
     $scope.getAjax = function () {
         $scope.paginationsButtons = [];
@@ -39,15 +51,10 @@ app.controller('clientControlleur', function ($scope, $http) {
         $scope.getAjax()
     }
 
-    $scope.closemodal = function(){
-        // console.log("here");
-       $scope.showModal = false;
-    //    $scope.toEdit = null; //init
-    };
-
     // ------------------------------------------ Editer client ------------------------------------------ //
     $scope.startEdit = function (client) {
-        $scope.showModal = true;
+        // $scope.openmodal();
+        $scope.openmodal();
         $scope.toEdit = client;
         $scope.etatREST = "edit";
     };
@@ -56,13 +63,13 @@ app.controller('clientControlleur', function ($scope, $http) {
         $http.post("/edit", { table: 'users', toEdit: toEdit }).then(function (data) {
 
             $scope.toEdit = null;
-            $scope.showModal = false;
+            $scope.closemodal();
         });
     }
 
     // ------------------------------------------ Ajouter client ------------------------------------------ //
     $scope.stratAdd = function () {
-        $scope.showModal = true;
+        $scope.openmodal();
         $scope.toEdit = null;
         $scope.etatREST = "add";
     }
@@ -71,13 +78,13 @@ app.controller('clientControlleur', function ($scope, $http) {
         $http.post("/add", { table: 'users', toAdd: toAdd }).then(function (data) {
             // console.log("data", data);
             $scope.toAdd = null;
-            $scope.showModal = false;
+            $scope.closemodal();
         });
     }
 
     // ------------------------------------------ Supprimer client ------------------------------------------ //
     $scope.startDelete = function (client) {
-        $scope.showModal = true;
+        $scope.openmodal();
         $scope.toEdit = client;
         $scope.etatREST = "delete";
     };
@@ -86,7 +93,7 @@ app.controller('clientControlleur', function ($scope, $http) {
         $http.post("/delete", { table: 'users', toDelete: toDelete }).then(function (data) {
             // console.log("data", data);
             $scope.toDelete = null;
-            $scope.showModal = false;
+            $scope.closemodal();
         });
     }
 });
@@ -131,14 +138,9 @@ app.controller('categorieControlleur', function ($scope, $http) {
         $scope.getAjax()
     }
 
-    $scope.closemodal = function(){
-        // console.log("here");
-       $showModal = false;
-    //    $scope.toEdit = null; //init
-    };
     // ------------------------------------------ Editer categorie ------------------------------------------ //
     $scope.startEdit = function (categorie) {
-        $scope.showModal = true;
+        $scope.openmodal();
         $scope.toEdit = categorie;
         $scope.etatREST = "edit";
     };
@@ -146,13 +148,13 @@ app.controller('categorieControlleur', function ($scope, $http) {
     $scope.editAjax = function (toEdit) {
         $http.post("/edit", { table: 'categories', toEdit: toEdit }).then(function (data) {
             $scope.toEdit = null;
-            $scope.showModal = false;
+            $scope.closemodal();
         });
     }
 
     // ------------------------------------------ Ajouter categorie ------------------------------------------ //
     $scope.stratAdd = function () {
-        $scope.showModal = true;
+        $scope.openmodal();
         $scope.toEdit = null;
         $scope.etatREST = "add";
     }
@@ -161,13 +163,13 @@ app.controller('categorieControlleur', function ($scope, $http) {
         $http.post("/add", { table: 'categories', toAdd: toAdd }).then(function (data) {
             // console.log("data", data);
             $scope.toAdd = null;
-            $scope.showModal = false;
+            $scope.closemodal();
         });
     }
 
     // ------------------------------------------ Supprimer categorie ------------------------------------------ //
     $scope.startDelete = function (categorie) {
-        $scope.showModal = true;
+        $scope.openmodal();
         $scope.toEdit = categorie;
         $scope.etatREST = "delete";
     };
@@ -176,7 +178,7 @@ app.controller('categorieControlleur', function ($scope, $http) {
         $http.post("/delete", { table: 'categories', toDelete: toDelete }).then(function (data) {
             // console.log("data", data);
             $scope.toDelete = null;
-            $scope.showModal = false;
+            $scope.closemodal();
         });
     }
 });
@@ -224,7 +226,7 @@ app.controller('produitControlleur', function ($scope, $http) {
 
     // ------------------------------------------ Editer produit ------------------------------------------ //
     $scope.startEdit = function (produit) {
-        $scope.showModal = true;
+        $scope.openmodal();
         $scope.toEdit = produit;
         $scope.etatREST = "edit";
     };
@@ -232,13 +234,13 @@ app.controller('produitControlleur', function ($scope, $http) {
     $scope.editAjax = function (toEdit) {
         $http.post("/edit", { table: 'products', toEdit: toEdit }).then(function (data) {
             $scope.toEdit = null;
-            $scope.showModal = false;
+            $scope.closemodal();
         });
     }
 
     // ------------------------------------------ Ajouter produit ------------------------------------------ //
     $scope.stratAdd = function () {
-        $scope.showModal = true;
+        $scope.openmodal();
         $scope.toEdit = null;
         $scope.etatREST = "add";
     }
@@ -247,13 +249,13 @@ app.controller('produitControlleur', function ($scope, $http) {
         $http.post("/add", { table: 'products', toAdd: toAdd }).then(function (data) {
             // console.log("data", data);
             $scope.toAdd = null;
-            $scope.showModal = false;
+            $scope.closemodal();
         });
     }
 
     // ------------------------------------------ Supprimer produit ------------------------------------------ //
     $scope.startDelete = function (produit) {
-        $scope.showModal = true;
+        $scope.openmodal();
         $scope.toEdit = produit;
         $scope.etatREST = "delete";
     };
@@ -262,7 +264,7 @@ app.controller('produitControlleur', function ($scope, $http) {
         $http.post("/delete", { table: 'products', toDelete: toDelete }).then(function (data) {
             // console.log("data", data);
             $scope.toDelete = null;
-            $scope.showModal = false;
+            $scope.closemodal();
         });
     }
 });
@@ -309,7 +311,7 @@ app.controller('boutiqueControlleur', function ($scope, $http) {
 
     // ------------------------------------------ Editer boutique ------------------------------------------ //
     $scope.startEdit = function (boutique) {
-        $scope.showModal = true;
+        $scope.openmodal();
         $scope.toEdit = boutique;
         $scope.etatREST = "edit";
     };
@@ -317,13 +319,13 @@ app.controller('boutiqueControlleur', function ($scope, $http) {
     $scope.editAjax = function (toEdit) {
         $http.post("/edit", { table: 'shops', toEdit: toEdit }).then(function (data) {
             $scope.toEdit = null;
-            $scope.showModal = false;
+            $scope.closemodal();
         });
     }
 
     // ------------------------------------------ Ajouter boutique ------------------------------------------ //
     $scope.stratAdd = function () {
-        $scope.showModal = true;
+        $scope.openmodal();
         $scope.toEdit = null;
         $scope.etatREST = "add";
     }
@@ -332,13 +334,13 @@ app.controller('boutiqueControlleur', function ($scope, $http) {
         $http.post("/add", { table: 'shops', toAdd: toAdd }).then(function (data) {
             // console.log("data", data);
             $scope.toAdd = null;
-            $scope.showModal = false;
+            $scope.closemodal();
         });
     }
 
     // ------------------------------------------ Supprimer boutique ------------------------------------------ //
     $scope.startDelete = function (boutique) {
-        $scope.showModal = true;
+        $scope.openmodal();
         $scope.toEdit = boutique;
         $scope.etatREST = "delete";
     };
@@ -347,7 +349,7 @@ app.controller('boutiqueControlleur', function ($scope, $http) {
         $http.post("/delete", { table: 'shops', toDelete: toDelete }).then(function (data) {
             // console.log("data", data);
             $scope.toDelete = null;
-            $scope.showModal = false;
+            $scope.closemodal();
         });
     }
 });
